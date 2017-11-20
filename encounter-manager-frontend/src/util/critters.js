@@ -14,8 +14,6 @@ export function nameCritters(critters, reinforcements) {
         });
     }
 
-    console.log(typeCounter);
-
     _.forEach(newCritters, function(critter) {
         if (!critter.name) {
             let num = typeCounter[critter.type] ? typeCounter[critter.type].current : 1;

@@ -4,6 +4,16 @@ import axios from 'axios';
 
 import Endpoints from '../config/endpoints';
 
+const style = {
+    base: {
+        padding: '15px',
+        textAlign: 'center'
+    },
+    text: {
+        margin: '5px'
+    },
+};
+
 class CreateMonster extends React.Component {
 
     constructor(props) {
@@ -72,12 +82,16 @@ class CreateMonster extends React.Component {
 
     render() {
         return (
-            <div>
-                <TextField name="name" floatingLabelText="Name" floatingLabelFixed={true} value={this.state.type} onChange={this.handleNameChange} autoFocus/>
-                <TextField name="hp-dice" floatingLabelText="Hp Dice (xdy + z)" floatingLabelFixed={true} value={this.state.hpDice} onChange={this.handleHpDiceChange}/>
-                <TextField name="init-mod" floatingLabelText="InitiativeMod" floatingLabelFixed={true} value={this.state.initiativeMod} onChange={this.handleInitModChange}/>
-                <TextField name="url" floatingLabelText="Dnd Beyond Url" floatingLabelFixed={true} value={this.state.url} onChange={this.handleUrlChange}/>
-                <RaisedButton label="Create" onClick={this.handleCreate}/>
+            <div style={style.base}>
+                <div>
+                    <TextField name="name" style={style.text} floatingLabelText="Name" value={this.state.type} onChange={this.handleNameChange} autoFocus/>
+                    <TextField name="hp-dice" style={style.text} floatingLabelText="Hp Dice (xdy + z)" value={this.state.hpDice} onChange={this.handleHpDiceChange}/>
+                </div>
+                <div>
+                    <TextField name="init-mod" style={style.text} floatingLabelText="InitiativeMod" value={this.state.initiativeMod} onChange={this.handleInitModChange}/>
+                    <TextField name="url" style={style.text} floatingLabelText="Dnd Beyond Url" value={this.state.url} onChange={this.handleUrlChange}/>
+                </div>
+                <RaisedButton label="Create" primary onClick={this.handleCreate}/>
             </div>
         )
     }

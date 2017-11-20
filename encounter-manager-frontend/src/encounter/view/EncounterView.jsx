@@ -10,8 +10,8 @@ import {orderCritters, initMonsters} from '../../util/critters';
 
 
 const style = {
-    divider: {
-        marginTop: '15px'
+    border: {
+        borderBottom: '1px solid black'
     }
 };
 
@@ -95,16 +95,18 @@ class EncounterView extends React.Component {
 
     render() {
         return (
-            <div>
-                <div style={style.divider}>
+            <div style={style.container}>
+                <div style={style.border}>
                     <PlayerManager addPlayers={this.addPlayers} />
                 </div>
-                <div style={style.divider}>
+                <div style={style.border}>
                     <AddMonster addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
-                <RaisedButton onClick={this.startEncounter} label="Start Encounter"/>
-                <RaisedButton onClick={this.resetEncounter} label="Reset Encounter"/>
-                <div style={style.divider}>
+                <div style={style.border}>
+                    <RaisedButton onClick={this.startEncounter} primary label="Start Encounter"/>
+                    <RaisedButton onClick={this.resetEncounter} secondary label="Reset Encounter"/>
+                </div>
+                <div style={style.border}>
                     {this.state.critters.map((monster, index) => {
                         return <MonsterEncounter key={index} index={index} monster={monster} changeHp={this.changeHp}/>
                     })}

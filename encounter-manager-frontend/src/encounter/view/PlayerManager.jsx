@@ -57,7 +57,7 @@ class PlayerManager extends React.Component {
             <div>
                 <TextField value={this.state.numOfPlayers} floatingLabelText={'Number of Players'} onChange={this.handlePlayerChange}/>
                 {playerElements}
-                {this.state.numOfPlayers ? <RaisedButton label="Add Players" onClick={this.addPlayers}/> : null}
+                {this.state.numOfPlayers ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
             </div>
         )
     };

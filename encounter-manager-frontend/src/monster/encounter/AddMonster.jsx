@@ -78,8 +78,8 @@ class AddMonster extends React.Component {
                     })}
                 </SelectField>
                 <TextField name="quantity" onChange={this.handleQtyChange} value={this.state.quantity}/>
-                <RaisedButton label="Add Monster" onClick={this.handleClick}/>
-                <RaisedButton label="Add Reinforcements" onClick={this.handleAddReinforcements}/>
+                <RaisedButton label="Add Monster" primary onClick={this.handleClick}/>
+                <RaisedButton label="Add Reinforcements" secondary onClick={this.handleAddReinforcements}/>
             </div>
         )
     }
