@@ -10,7 +10,7 @@ class CreateMonster extends React.Component {
         super(props);
 
         this.state = {
-            name: '',
+            type: '',
             hpDice: '',
             initiativeMod: '',
             url: ''
@@ -25,7 +25,7 @@ class CreateMonster extends React.Component {
 
     handleNameChange(event, value) {
         this.setState({
-            name: value
+            type: value
         })
     }
 
@@ -49,7 +49,7 @@ class CreateMonster extends React.Component {
 
     handleCreate() {
         let monster = {
-            name: this.state.name,
+            type: this.state.type,
             hpDice: this.state.hpDice,
             initiativeMod: this.state.initiativeMod,
             url: this.state.url
@@ -59,7 +59,7 @@ class CreateMonster extends React.Component {
         axios.post(url, monster, {crossdomain: true}).then((response) => {
             this.setState({
                 monsters: response.data,
-                name: '',
+                type: '',
                 hpDice: '',
                 initiativeMod: '',
                 url: ''
@@ -73,7 +73,7 @@ class CreateMonster extends React.Component {
     render() {
         return (
             <div>
-                <TextField name="name" floatingLabelText="Name" floatingLabelFixed={true} value={this.state.name} onChange={this.handleNameChange} autoFocus/>
+                <TextField name="name" floatingLabelText="Name" floatingLabelFixed={true} value={this.state.type} onChange={this.handleNameChange} autoFocus/>
                 <TextField name="hp-dice" floatingLabelText="Hp Dice (xdy + z)" floatingLabelFixed={true} value={this.state.hpDice} onChange={this.handleHpDiceChange}/>
                 <TextField name="init-mod" floatingLabelText="InitiativeMod" floatingLabelFixed={true} value={this.state.initiativeMod} onChange={this.handleInitModChange}/>
                 <TextField name="url" floatingLabelText="Dnd Beyond Url" floatingLabelFixed={true} value={this.state.url} onChange={this.handleUrlChange}/>

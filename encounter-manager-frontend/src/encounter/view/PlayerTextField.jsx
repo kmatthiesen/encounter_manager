@@ -31,7 +31,8 @@ class PlayerManager extends React.Component {
         if (this.state.name && this.state.initiative) {
             let player = {
                 name: this.state.name,
-                initiative: Number(this.state.initiative)
+                initiative: Number(this.state.initiative),
+                isPlayer: true
             };
 
             this.props.onChange(this.props.playerNumber, player);

@@ -18,13 +18,14 @@ class AddMonster extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleQtyChange = this.handleQtyChange.bind(this);
+        this.handleAddReinforcements = this.handleAddReinforcements.bind(this);
     }
 
     componentDidMount() {
         let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
         axios.get(url, {crossdomain: true}).then((response) => {
             this.setState({
-                monsters: _.orderBy(response.data, ['name'])
+                monsters: _.orderBy(response.data, ['type'])
             })
         }).catch((err) => {
             console.log(err);
@@ -47,6 +48,16 @@ class AddMonster extends React.Component {
         this.props.addMonsters(monsters);
     }
 
+    handleAddReinforcements() {
+        let monster = this.state.monsters[this.state.value];
+        let monsters = [];
+        for (let i = 0; i < Number(this.state.quantity); i++) {
+            let newMonster = _.cloneDeep(monster);
+            monsters.push(newMonster);
+        }
+        this.props.addReinforcements(monsters);
+    }
+
     handleQtyChange(event, value) {
         this.setState({
             quantity: value
@@ -63,11 +74,12 @@ class AddMonster extends React.Component {
                     autoFocus
                 >
                     {this.state.monsters.map((monster, index) => {
-                        return <MenuItem key={index} value={index} primaryText={monster.name}/>
+                        return <MenuItem key={index} value={index} primaryText={monster.type}/>
                     })}
                 </SelectField>
                 <TextField name="quantity" onChange={this.handleQtyChange} value={this.state.quantity}/>
                 <RaisedButton label="Add Monster" onClick={this.handleClick}/>
+                <RaisedButton label="Add Reinforcements" onClick={this.handleAddReinforcements}/>
             </div>
         )
     }

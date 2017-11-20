@@ -5,7 +5,8 @@ import MonsterEncounter from '../../monster/encounter/MonsterRow.jsx';
 import AddMonster from '../../monster/encounter/AddMonster.jsx';
 import PlayerManager from './PlayerManager.jsx';
 
-import {rollDice, calculateHp, isAlive, isBloody} from "../../util/numbers";
+import {isAlive, isBloody} from "../../util/numbers";
+import {orderCritters, initMonsters} from '../../util/critters';
 
 
 const style = {
@@ -29,24 +30,14 @@ class EncounterView extends React.Component {
         this.addPlayers = this.addPlayers.bind(this);
         this.addMonsters = this.addMonsters.bind(this);
         this.resetEncounter = this.resetEncounter.bind(this);
+        this.addReinforcements = this.addReinforcements.bind(this);
     }
 
     startEncounter() {
-        let newMonsters = [];
-        _.forEach(this.state.monsters, function(monster) {
-
-            let newMonster = _.cloneDeep(monster);
-            newMonster.initiative = rollDice(20, 1) + Number(monster.initiativeMod);
-            newMonster.hp = calculateHp(monster.hpDice);
-            newMonster.maxHp = newMonster.hp;
-            newMonster.isAlive = true;
-            newMonster.isBloody = false;
-
-            newMonsters.push(newMonster);
-        });
+        let newMonsters = initMonsters(this.state.monsters);
 
         let newCritters = _.concat(newMonsters, this.state.players);
-        newCritters = _.orderBy(newCritters, ['initiative'], ['desc']);
+        newCritters = orderCritters(newCritters);
 
         this.setState({
             critters: newCritters
@@ -91,6 +82,17 @@ class EncounterView extends React.Component {
         })
     }
 
+    addReinforcements(monsters) {
+        let newMonsters = initMonsters(monsters);
+        let newCritters = _.concat(this.state.critters, newMonsters);
+        newCritters = orderCritters(newCritters);
+
+        this.setState({
+            critters: newCritters
+        })
+    }
+
+
     render() {
         return (
             <div>
@@ -98,7 +100,7 @@ class EncounterView extends React.Component {
                     <PlayerManager addPlayers={this.addPlayers} />
                 </div>
                 <div style={style.divider}>
-                    <AddMonster addMonsters={this.addMonsters} />
+                    <AddMonster addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
                 <RaisedButton onClick={this.startEncounter} label="Start Encounter"/>
                 <RaisedButton onClick={this.resetEncounter} label="Reset Encounter"/>
