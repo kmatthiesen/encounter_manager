@@ -1,9 +1,20 @@
 import _ from 'lodash';
 import {rollDice, calculateHp} from './numbers';
 
-export function nameCritters(critters) {
+export function nameCritters(critters, reinforcements) {
     let newCritters = _.cloneDeep(critters);
     let typeCounter = {};
+
+    if (reinforcements) {
+        _.forEach(newCritters, function(critter) {
+            if (critter.name) {
+                let num = typeCounter[critter.type] ? typeCounter[critter.type].current : 1;
+                typeCounter[critter.type] = {current: ++num};
+            }
+        });
+    }
+
+    console.log(typeCounter);
 
     _.forEach(newCritters, function(critter) {
         if (!critter.name) {
@@ -16,9 +27,9 @@ export function nameCritters(critters) {
     return newCritters;
 }
 
-export function orderCritters(critters) {
+export function orderCritters(critters, reinforcements) {
     let orderCritters = _.orderBy(critters, ['initiative'], ['desc']);
-    orderCritters = nameCritters(orderCritters);
+    orderCritters = nameCritters(orderCritters, reinforcements);
 
     return orderCritters;
 }

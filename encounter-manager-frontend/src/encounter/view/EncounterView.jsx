@@ -85,7 +85,7 @@ class EncounterView extends React.Component {
     addReinforcements(monsters) {
         let newMonsters = initMonsters(monsters);
         let newCritters = _.concat(this.state.critters, newMonsters);
-        newCritters = orderCritters(newCritters);
+        newCritters = orderCritters(newCritters, true);
 
         this.setState({
             critters: newCritters
