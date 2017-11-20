@@ -39,3 +39,11 @@ export function calculateHp(compoundDice) {
     let hpDice = splitDice(compoundHp[0]);
     return rollDice(hpDice[0], hpDice[1]) + compoundHp[1];
 }
+
+export function isAlive(hp) {
+    return hp > 0;
+}
+
+export function isBloody(hp, maxHp) {
+    return hp <= (maxHp / 2);
+}

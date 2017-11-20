@@ -1,1 +1,65 @@
-[{"name":"Zombie","hpDice":"3d8 + 9","initiativeMod":"-2","url":"https://www.dndbeyond.com/monsters/zombie","id":0},{"name":"Frost Giant","hpDice":"12d12 + 60","initiativeMod":"-1","url":"https://www.dndbeyond.com/monsters/frost-giant","id":1},{"name":"Ghoul","hpDice":"5d8","initiativeMod":"2","url":"https://www.dndbeyond.com/monsters/ghoul","id":3},{"name":"Ancient Black Dragon","hpDice":"21d20 + 147","initiativeMod":"2","url":"https://www.dndbeyond.com/monsters/ancient-black-dragon","id":4},{"name":"Yeti","hpDice":"6d10 + 18","initiativeMod":"1","url":"","id":5},{"name":"Tribal Warriors","hpDice":"2d8 + 2","initiativeMod":"0","url":"","id":6},{"name":"Winter Wolf","hpDice":"10d10 + 20","initiativeMod":"1","url":"","id":7},{"name":"Aarakocra","hpDice":"3d8","initiativeMod":"2","url":"","id":8}]
+[
+  {
+    "name": "Zombie",
+    "hpDice": "3d8 + 9",
+    "initiativeMod": "-2",
+    "url": "https://www.dndbeyond.com/monsters/zombie",
+    "id": 0
+  },
+  {
+    "name": "Frost Giant",
+    "hpDice": "12d12 + 60",
+    "initiativeMod": "-1",
+    "url": "https://www.dndbeyond.com/monsters/frost-giant",
+    "id": 1
+  },
+  {
+    "name": "Ghoul",
+    "hpDice": "5d8",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/ghoul",
+    "id": 3
+  },
+  {
+    "name": "Ancient Black Dragon",
+    "hpDice": "21d20 + 147",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/ancient-black-dragon",
+    "id": 4
+  },
+  {
+    "name": "Yeti",
+    "hpDice": "6d10 + 18",
+    "initiativeMod": "1",
+    "url": "",
+    "id": 5
+  },
+  {
+    "name": "Tribal Warriors",
+    "hpDice": "2d8 + 2",
+    "initiativeMod": "0",
+    "url": "",
+    "id": 6
+  },
+  {
+    "name": "Winter Wolf",
+    "hpDice": "10d10 + 20",
+    "initiativeMod": "1",
+    "url": "",
+    "id": 7
+  },
+  {
+    "name": "Aarakocra",
+    "hpDice": "3d8",
+    "initiativeMod": "2",
+    "url": "",
+    "id": 8
+  },
+  {
+    "name": "Aldani (Lobsterfolk)",
+    "hpDice": "9d8 + 9",
+    "initiativeMod": "-1",
+    "url": "https://www.dndbeyond.com/monsters/aldani-lobsterfolk",
+    "id": 9
+  }
+]

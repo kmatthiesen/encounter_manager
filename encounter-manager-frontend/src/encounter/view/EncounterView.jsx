@@ -1,11 +1,11 @@
 import React from 'react';
 import _ from 'lodash';
 import {RaisedButton} from 'material-ui';
-import MonsterEncounter from '../../monster/encounter/MonsterEncounter.jsx';
+import MonsterEncounter from '../../monster/encounter/MonsterRow.jsx';
 import AddMonster from '../../monster/encounter/AddMonster.jsx';
 import PlayerManager from './PlayerManager.jsx';
 
-import {rollDice, calculateHp} from "../../util/numbers";
+import {rollDice, calculateHp, isAlive, isBloody} from "../../util/numbers";
 
 
 const style = {
@@ -38,6 +38,9 @@ class EncounterView extends React.Component {
             let newMonster = _.cloneDeep(monster);
             newMonster.initiative = rollDice(20, 1) + Number(monster.initiativeMod);
             newMonster.hp = calculateHp(monster.hpDice);
+            newMonster.maxHp = newMonster.hp;
+            newMonster.isAlive = true;
+            newMonster.isBloody = false;
 
             newMonsters.push(newMonster);
         });
@@ -59,10 +62,14 @@ class EncounterView extends React.Component {
 
     changeHp(index, mod) {
         let newCritters = _.cloneDeep(this.state.critters);
-        // let index = _.findIndex(newCritters, {id: id});
 
+        let newCritter = newCritters[index];
 
-        newCritters[index].hp += Number(mod);
+        newCritter.hp += Number(mod);
+        newCritter.isAlive = isAlive(newCritter.hp);
+        newCritter.isBloody = isBloody(newCritter.hp, newCritter.maxHp);
+
+        newCritters[index] = newCritter;
 
         this.setState({
             critters: newCritters
@@ -96,9 +103,9 @@ class EncounterView extends React.Component {
                 <RaisedButton onClick={this.startEncounter} label="Start Encounter"/>
                 <RaisedButton onClick={this.resetEncounter} label="Reset Encounter"/>
                 <div style={style.divider}>
-                {this.state.critters.map((monster, index) => {
-                    return <MonsterEncounter key={index} index={index} monster={monster} changeHp={this.changeHp}/>
-                })}
+                    {this.state.critters.map((monster, index) => {
+                        return <MonsterEncounter key={index} index={index} monster={monster} changeHp={this.changeHp}/>
+                    })}
                 </div>
             </div>
         );

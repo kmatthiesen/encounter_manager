@@ -24,7 +24,7 @@ class AddMonster extends React.Component {
         let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
         axios.get(url, {crossdomain: true}).then((response) => {
             this.setState({
-                monsters: response.data
+                monsters: _.orderBy(response.data, ['name'])
             })
         }).catch((err) => {
             console.log(err);
@@ -42,7 +42,6 @@ class AddMonster extends React.Component {
         let monsters = [];
         for (let i = 0; i < Number(this.state.quantity); i++) {
             let newMonster = _.cloneDeep(monster);
-            newMonster.name = newMonster.name + ' ' + (i + 1);
             monsters.push(newMonster);
         }
         this.props.addMonsters(monsters);
