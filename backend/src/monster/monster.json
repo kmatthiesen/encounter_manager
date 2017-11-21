@@ -4,14 +4,14 @@
     "hpDice": "3d8 + 9",
     "initiativeMod": "-2",
     "url": "https://www.dndbeyond.com/monsters/zombie",
-    "id": 0
+    "id": 1
   },
   {
     "type": "Frost Giant",
     "hpDice": "12d12 + 60",
     "initiativeMod": "-1",
     "url": "https://www.dndbeyond.com/monsters/frost-giant",
-    "id": 1
+    "id": 2
   },
   {
     "type": "Ghoul",
@@ -61,5 +61,103 @@
     "initiativeMod": "-1",
     "url": "https://www.dndbeyond.com/monsters/aldani-lobsterfolk",
     "id": 9
+  },
+  {
+    "type": "Goblin Boss",
+    "hpDice": "6d6",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/goblin-boss",
+    "id": 10
+  },
+  {
+    "type": "Goblin",
+    "hpDice": "2d6",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/goblin",
+    "id": 11
+  },
+  {
+    "type": "Swarm of Insects",
+    "hpDice": "5d8",
+    "initiativeMod": "1",
+    "url": "https://www.dndbeyond.com/monsters/swarm-of-insects",
+    "id": 12
+  },
+  {
+    "type": "Kobold",
+    "hpDice": "2d6 - 2",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/kobold",
+    "id": 13
+  },
+  {
+    "type": "Quipper",
+    "hpDice": "1d4 - 1",
+    "initiativeMod": "3",
+    "url": "https://www.dndbeyond.com/monsters/quipper",
+    "id": 14
+  },
+  {
+    "type": "Winged Kobold",
+    "hpDice": "3d6 - 3",
+    "initiativeMod": "3",
+    "url": "https://www.dndbeyond.com/monsters/winged-kobold",
+    "id": 15
+  },
+  {
+    "type": "Kobold Inventor",
+    "hpDice": "3d6 + 3",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/kobold-inventor",
+    "id": 16
+  },
+  {
+    "type": "Specter",
+    "hpDice": "5d8",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/specter",
+    "id": 17
+  },
+  {
+    "type": "Girallon Zombie",
+    "hpDice": "7d10 + 21",
+    "initiativeMod": "1",
+    "url": "https://www.dndbeyond.com/monsters/girallon-zombie",
+    "id": 18
+  },
+  {
+    "type": "Weretiger",
+    "hpDice": "16d8 + 48",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/weretiger",
+    "id": 19
+  },
+  {
+    "type": "Vegepygmy Chief",
+    "hpDice": "6d6 + 12",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/vegepygmy-chief",
+    "id": 20
+  },
+  {
+    "type": "Vegepygmy",
+    "hpDice": "2d6 + 2",
+    "initiativeMod": "2",
+    "url": "https://www.dndbeyond.com/monsters/vegepygmy",
+    "id": 21
+  },
+  {
+    "type": "Thorny",
+    "hpDice": "5d8 + 5",
+    "initiativeMod": "1",
+    "url": "https://www.dndbeyond.com/monsters/thorny",
+    "id": 22
+  },
+  {
+    "type": "Giant Snapping Turtle",
+    "hpDice": "10d10 + 20",
+    "initiativeMod": "0",
+    "url": "https://www.dndbeyond.com/monsters/giant-snapping-turtle",
+    "id": 23
   }
 ]
