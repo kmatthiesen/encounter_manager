@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField, RaisedButton } from 'material-ui';
+import { TextField, RaisedButton, Snackbar } from 'material-ui';
 import axios from 'axios';
 
 import Endpoints from '../config/endpoints';
@@ -12,6 +12,9 @@ const style = {
     text: {
         margin: '5px'
     },
+    error: {
+        backgroundColor: 'red'
+    }
 };
 
 class CreateMonster extends React.Component {
@@ -23,7 +26,10 @@ class CreateMonster extends React.Component {
             type: '',
             hpDice: '',
             initiativeMod: '',
-            url: ''
+            url: '',
+            open: false,
+            message: '',
+            error: false
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
@@ -31,6 +37,7 @@ class CreateMonster extends React.Component {
         this.handleInitModChange = this.handleInitModChange.bind(this);
         this.handleUrlChange = this.handleUrlChange.bind(this);
         this.handleCreate = this.handleCreate.bind(this);
+        this.handleRequestClose = this.handleRequestClose.bind(this);
     }
 
     handleNameChange(event, value) {
@@ -57,6 +64,12 @@ class CreateMonster extends React.Component {
         })
     }
 
+    handleRequestClose() {
+        this.setState({
+            open: false
+        })
+    }
+
     handleCreate() {
         let monster = {
             type: this.state.type,
@@ -72,11 +85,17 @@ class CreateMonster extends React.Component {
                 type: '',
                 hpDice: '',
                 initiativeMod: '',
-                url: ''
+                url: '',
+                open: true,
+                message: 'Monster created successfully',
+                error: false
             });
-            alert("Created Successfully");
         }).catch((err) => {
-            console.log(err);
+            this.setState({
+                open: true,
+                message: 'ERROR: ' + err.response.data,
+                error: true
+            })
         })
     }
 
@@ -92,7 +111,15 @@ class CreateMonster extends React.Component {
                     <TextField name="url" style={style.text} floatingLabelText="Dnd Beyond Url" value={this.state.url} onChange={this.handleUrlChange}/>
                 </div>
                 <RaisedButton label="Create" primary onClick={this.handleCreate}/>
+                <Snackbar
+                    open={this.state.open}
+                    message={this.state.message}
+                    autoHideDuration={this.state.error ? 10000 : 3000}
+                    onRequestClose={this.handleRequestClose}
+                    style={this.state.error ? style.error : {}}
+                />
             </div>
+
         )
     }
 }

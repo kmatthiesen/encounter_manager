@@ -139,7 +139,11 @@ class EncounterView extends React.Component {
                     <AddMonster style={style.flexItem} addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
                 <div>
-                    { this.state.critters.length ? <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/> : null}
+                    { this.state.critters.length ?
+                        <div style={style.borderBottom}>
+                            <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/>
+                        </div>
+                        : null}
                     {this.state.critters.map((monster, index) => {
                         return <MonsterEncounter key={index} activeTurn={this.state.turnNumber === index} index={index} monster={monster} changeHp={this.changeHp}/>
                     })}

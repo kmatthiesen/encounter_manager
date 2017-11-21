@@ -17,7 +17,7 @@ const style = {
         backgroundColor: '#d8dfe7'
     },
     activeTurn: {
-        backgroundColor: '#e7e77d'
+        backgroundColor: '#c1ffc9'
     }
 };
 

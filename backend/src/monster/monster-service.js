@@ -1,5 +1,4 @@
-let monsterData = require('./monster-data.js');
-
+const mongoClient = require('../lib/mongo-client.js');
 
 class MonsterService {
 
@@ -8,16 +7,32 @@ class MonsterService {
     }
 
     getById(id) {
-        return monsterData.getById(id);
+        // return monsterData.getById(id);
     }
 
     getAll(responder) {
-        responder.send(200, monsterData.getAll());
+
+        mongoClient.queryAsync('monsters', {}).then((data) => {
+            responder.send(200, data);
+        }).catch((error) => {
+            responder.send(500, error);
+        });
     }
 
     add(responder, monster) {
-        monsterData.add(monster, (data) => {
-            responder.send(201, data);
+
+        mongoClient.queryAsync('monsters', {'type': monster.type}).then((data) => {
+            if (data.length === 0) {
+                mongoClient.insertAsync('monsters', monster).then(() => {
+                    responder.send(200);
+                }).catch((error) => {
+                    responder.send(500, error);
+                })
+            } else {
+                responder.send(409, 'Monster already exists');
+            }
+        }).catch((error) => {
+            responder.send(500, error);
         });
     }
 }
