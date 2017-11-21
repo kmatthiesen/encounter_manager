@@ -5,13 +5,19 @@ import HpDisplay from '../HpDisplay.jsx';
 const style = {
     div: {
         borderBottom: '1px solid black',
-        margin: '5px'
+        padding: '5px'
     },
     dead: {
         textDecoration: 'line-through'
     },
     bloody: {
         backgroundColor: '#ff9891'
+    },
+    alternateRow: {
+        backgroundColor: '#d8dfe7'
+    },
+    activeTurn: {
+        backgroundColor: '#e7e77d'
     }
 };
 
@@ -44,8 +50,10 @@ class MonsterEncounter extends React.Component {
     render() {
         let monster = this.props.monster;
 
-        let styles = monster.isAlive ? style.div : {...style.div, ...style.dead};
+        let styles = (this.props.index % 2) ? style.alternateRow : {};
+        styles = monster.isAlive ? {...styles, ...style.div} : {...styles, ...style.div, ...style.dead};
         styles = (monster.isAlive && monster.isBloody) ? {...styles, ...style.bloody} : styles;
+        styles = this.props.activeTurn ? {...styles, ...style.activeTurn} : styles;
 
         return (
             <div style={styles}>

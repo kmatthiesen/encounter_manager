@@ -1,6 +1,12 @@
 import React from 'react';
 import { TextField } from 'material-ui';
 
+const style = {
+    margin: {
+        margin: '0px 5px'
+    }
+};
+
 class PlayerManager extends React.Component {
 
     constructor(props) {
@@ -41,9 +47,9 @@ class PlayerManager extends React.Component {
 
     render() {
         return (
-            <div>
-                <TextField value={this.state.name} floatingLabelText={'Player Name'} onChange={this.handleNameChange}/>
-                <TextField value={this.state.initiative} floatingLabelText={'Initiative'} onChange={this.handleInitChange}/>
+            <div style={this.props.style}>
+                <TextField value={this.state.name} floatingLabelText={'Player Name'} style={style.margin} onChange={this.handleNameChange}/>
+                <TextField value={this.state.initiative} floatingLabelText={'Initiative'} style={style.margin} onChange={this.handleInitChange}/>
             </div>
         )
     };

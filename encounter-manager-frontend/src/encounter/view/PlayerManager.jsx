@@ -4,6 +4,17 @@ import { TextField, RaisedButton } from 'material-ui';
 
 import PlayerTextField from './PlayerTextField.jsx';
 
+const style = {
+    flex: {
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '5px 0px'
+    },
+    center: {
+        textAlign: 'center'
+    }
+};
+
 class PlayerManager extends React.Component {
 
     constructor(props) {
@@ -46,7 +57,6 @@ class PlayerManager extends React.Component {
 
     addPlayers() {
         this.props.addPlayers(this.state.players);
-        alert('Players added');
     }
 
     render() {
@@ -54,10 +64,16 @@ class PlayerManager extends React.Component {
         const playerElements = this.generatePlayerElements(this.state.numOfPlayers);
 
         return (
-            <div>
-                <TextField value={this.state.numOfPlayers} floatingLabelText={'Number of Players'} onChange={this.handlePlayerChange}/>
-                {playerElements}
-                {this.state.numOfPlayers ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
+            <div style={this.props.style}>
+                <div style={style.flex}>
+                    <TextField value={this.state.numOfPlayers} floatingLabelText={'Number of Players'} onChange={this.handlePlayerChange}/>
+                </div>
+                <div style={style.center}>
+                    {playerElements}
+                </div>
+                <div style={style.flex}>
+                    {this.state.numOfPlayers ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
+                </div>
             </div>
         )
     };

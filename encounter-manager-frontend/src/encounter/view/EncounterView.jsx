@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {RaisedButton} from 'material-ui';
+import {RaisedButton, Snackbar} from 'material-ui';
 import MonsterEncounter from '../../monster/encounter/MonsterRow.jsx';
 import AddMonster from '../../monster/encounter/AddMonster.jsx';
 import PlayerManager from './PlayerManager.jsx';
@@ -10,8 +10,21 @@ import {orderCritters, initMonsters} from '../../util/critters';
 
 
 const style = {
-    border: {
-        borderBottom: '1px solid black'
+    borderBottom: {
+        borderBottom: '1px solid #d8dfe7'
+    },
+    flex: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    borderRight: {
+        borderRight: '1px solid #d8dfe7'
+    },
+    flexItem: {
+        minWidth: '50%',
+    },
+    margin: {
+        margin: '5px'
     }
 };
 
@@ -22,7 +35,10 @@ class EncounterView extends React.Component {
         this.state = {
             monsters: [],
             players: [],
-            critters: []
+            critters: [],
+            open: false,
+            message: '',
+            turnNumber: 0
         };
 
         this.startEncounter = this.startEncounter.bind(this);
@@ -31,6 +47,8 @@ class EncounterView extends React.Component {
         this.addMonsters = this.addMonsters.bind(this);
         this.resetEncounter = this.resetEncounter.bind(this);
         this.addReinforcements = this.addReinforcements.bind(this);
+        this.handleRequestClose = this.handleRequestClose.bind(this);
+        this.nextTurn = this.nextTurn.bind(this);
     }
 
     startEncounter() {
@@ -69,7 +87,9 @@ class EncounterView extends React.Component {
 
     addPlayers(players) {
         this.setState({
-            players: players
+            players: players,
+            open: true,
+            message: 'Players added/updated.'
         })
     }
 
@@ -78,7 +98,9 @@ class EncounterView extends React.Component {
         newMonsters = _.concat(newMonsters, monsters);
 
         this.setState({
-            monsters: newMonsters
+            monsters: newMonsters,
+            open: true,
+            message: 'Monsters added.'
         })
     }
 
@@ -88,29 +110,50 @@ class EncounterView extends React.Component {
         newCritters = orderCritters(newCritters, true);
 
         this.setState({
-            critters: newCritters
+            critters: newCritters,
+            open: true,
+            message: 'Reinforcements added.'
         })
     }
 
+    handleRequestClose() {
+        this.setState({
+            open: false
+        });
+    }
+
+    nextTurn() {
+        let nextTurn = this.state.turnNumber + 1;
+        let newTurnNumber = (this.state.critters.length > nextTurn) ? nextTurn : 0;
+
+        this.setState({
+            turnNumber: newTurnNumber
+        })
+    }
 
     render() {
         return (
             <div style={style.container}>
-                <div style={style.border}>
-                    <PlayerManager addPlayers={this.addPlayers} />
+                <div style={{...style.flex, ...style.borderBottom}}>
+                    <PlayerManager style={{...style.flexItem, ...style.borderRight}} addPlayers={this.addPlayers} />
+                    <AddMonster style={style.flexItem} addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
-                <div style={style.border}>
-                    <AddMonster addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
-                </div>
-                <div style={style.border}>
-                    <RaisedButton onClick={this.startEncounter} primary label="Start Encounter"/>
-                    <RaisedButton onClick={this.resetEncounter} secondary label="Reset Encounter"/>
-                </div>
-                <div style={style.border}>
+                <div>
+                    { this.state.critters.length ? <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/> : null}
                     {this.state.critters.map((monster, index) => {
-                        return <MonsterEncounter key={index} index={index} monster={monster} changeHp={this.changeHp}/>
+                        return <MonsterEncounter key={index} activeTurn={this.state.turnNumber === index} index={index} monster={monster} changeHp={this.changeHp}/>
                     })}
                 </div>
+                <div>
+                    <RaisedButton onClick={this.startEncounter} primary style={style.margin} label="Start Encounter"/>
+                    <RaisedButton onClick={this.resetEncounter} secondary style={style.margin} label="Reset Encounter"/>
+                </div>
+                <Snackbar
+                    open={this.state.open}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    onRequestClose={this.handleRequestClose}
+                />
             </div>
         );
     }

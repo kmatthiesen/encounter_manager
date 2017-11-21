@@ -4,7 +4,6 @@ import { Dialog, FlatButton, TextField, RadioButtonGroup, RadioButton } from 'ma
 const style = {
     base: {
         maxWidth: '30%',
-        margin: 'auto'
     }
 };
 

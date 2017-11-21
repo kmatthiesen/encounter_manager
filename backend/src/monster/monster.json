@@ -31,28 +31,28 @@
     "type": "Yeti",
     "hpDice": "6d10 + 18",
     "initiativeMod": "1",
-    "url": "",
+    "url": "https://www.dndbeyond.com/monsters/yeti",
     "id": 5
   },
   {
-    "type": "Tribal Warriors",
+    "type": "Tribal Warrior",
     "hpDice": "2d8 + 2",
     "initiativeMod": "0",
-    "url": "",
+    "url": "https://www.dndbeyond.com/monsters/tribal-warrior",
     "id": 6
   },
   {
     "type": "Winter Wolf",
     "hpDice": "10d10 + 20",
     "initiativeMod": "1",
-    "url": "",
+    "url": "https://www.dndbeyond.com/monsters/winter-wolf",
     "id": 7
   },
   {
     "type": "Aarakocra",
     "hpDice": "3d8",
     "initiativeMod": "2",
-    "url": "",
+    "url": "https://www.dndbeyond.com/monsters/aarakocra",
     "id": 8
   },
   {

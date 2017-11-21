@@ -4,6 +4,16 @@ import _ from 'lodash';
 import { SelectField, MenuItem, RaisedButton, TextField } from 'material-ui';
 import Endpoints from '../../config/endpoints';
 
+const style = {
+    flex: {
+        display: 'flex',
+        justifyContent: 'center'
+    },
+    margin: {
+        margin: '5px'
+    }
+};
+
 class AddMonster extends React.Component {
 
     constructor(props) {
@@ -66,20 +76,26 @@ class AddMonster extends React.Component {
 
     render() {
         return (
-            <div>
-                <SelectField
-                    floatingLabelText={"Monster"}
-                    value={this.state.value}
-                    onChange={this.handleChange}
-                    autoFocus
-                >
-                    {this.state.monsters.map((monster, index) => {
-                        return <MenuItem key={index} value={index} primaryText={monster.type}/>
-                    })}
-                </SelectField>
-                <TextField name="quantity" onChange={this.handleQtyChange} value={this.state.quantity}/>
-                <RaisedButton label="Add Monster" primary onClick={this.handleClick}/>
-                <RaisedButton label="Add Reinforcements" secondary onClick={this.handleAddReinforcements}/>
+            <div style={this.props.style}>
+                <div style={style.flex}>
+                    <SelectField
+                        floatingLabelText={"Monster"}
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        style={style.margin}
+                        dropDownMenuProps={{anchorOrigin:{vertical:"bottom", horizontal:"left"}}}
+                        autoFocus
+                    >
+                        {this.state.monsters.map((monster, index) => {
+                            return <MenuItem key={index} value={index} primaryText={monster.type}/>
+                        })}
+                    </SelectField>
+                    <TextField name="quantity" floatingLabelText={"Quantity"} style={style.margin} onChange={this.handleQtyChange} value={this.state.quantity}/>
+                </div>
+                <div style={style.flex}>
+                    <RaisedButton label="Add Monster" primary style={style.margin} onClick={this.handleClick}/>
+                    <RaisedButton label="Add Reinforcements" secondary style={style.margin} onClick={this.handleAddReinforcements}/>
+                </div>
             </div>
         )
     }
