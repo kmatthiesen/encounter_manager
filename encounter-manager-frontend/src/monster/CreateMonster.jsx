@@ -3,6 +3,7 @@ import { TextField, RaisedButton, Snackbar } from 'material-ui';
 import axios from 'axios';
 
 import Endpoints from '../config/endpoints';
+import MonsterSearch from "./MonsterSearch.jsx";
 
 const style = {
     base: {
@@ -111,6 +112,9 @@ class CreateMonster extends React.Component {
                     <TextField name="url" style={style.text} floatingLabelText="Dnd Beyond Url" value={this.state.url} onChange={this.handleUrlChange}/>
                 </div>
                 <RaisedButton label="Create" primary onClick={this.handleCreate}/>
+                <div>
+                    <MonsterSearch/>
+                </div>
                 <Snackbar
                     open={this.state.open}
                     message={this.state.message}

@@ -7,6 +7,7 @@ import PlayerManager from './PlayerManager.jsx';
 
 import {isAlive, isBloody} from "../../util/numbers";
 import {orderCritters, initMonsters} from '../../util/critters';
+import CurrentMonsters from "../../monster/encounter/CurrentMonsters";
 
 
 const style = {
@@ -58,7 +59,8 @@ class EncounterView extends React.Component {
         newCritters = orderCritters(newCritters);
 
         this.setState({
-            critters: newCritters
+            critters: newCritters,
+            turnNumber: 0
         })
     }
 
@@ -139,6 +141,12 @@ class EncounterView extends React.Component {
                     <AddMonster style={style.flexItem} addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
                 <div>
+                    { !this.state.critters.length ?
+                        <div style={{...style.flex, ...style.borderBottom}}>
+                            <CurrentMonsters monsters={this.state.monsters}/>
+                        </div> : null}
+                </div>
+                <div>
                     { this.state.critters.length ?
                         <div style={style.borderBottom}>
                             <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/>
@@ -150,7 +158,7 @@ class EncounterView extends React.Component {
                 </div>
                 <div>
                     <RaisedButton onClick={this.startEncounter} primary style={style.margin} label="Start Encounter"/>
-                    <RaisedButton onClick={this.resetEncounter} secondary style={style.margin} label="Reset Encounter"/>
+                    <RaisedButton onClick={this.resetEncounter} secondary style={style.margin} label="End Encounter"/>
                 </div>
                 <Snackbar
                     open={this.state.open}
