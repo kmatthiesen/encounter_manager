@@ -8,9 +8,7 @@ class HpDisplay extends React.Component {
 
     render() {
         return (
-            <span>
-                HP: {this.props.hp} / {this.props.maxHp}
-            </span>
+            <span> HP: {this.props.hp} / {this.props.maxHp} </span>
         );
     }
 }

@@ -70,7 +70,7 @@ class ChangeHp extends React.Component {
             <div>
                 <Dialog
                     style={style.base}
-                    title="Change Hp"
+                    title={this.props.monsterName}
                     actions={actions}
                     modal={false}
                     open={this.props.open}
