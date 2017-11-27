@@ -125,11 +125,10 @@ class EncounterView extends React.Component {
     }
 
     nextTurn() {
-        let nextTurn = this.state.turnNumber + 1;
-        let newTurnNumber = (this.state.critters.length > nextTurn) ? nextTurn : 0;
-
+        let newTurnNumber = this.state.turnNumber + 1;
         let deadMonster = true;
         do {
+            newTurnNumber = (this.state.critters.length > newTurnNumber) ? newTurnNumber : 0;
             if (!this.state.critters[newTurnNumber].isAlive) {
                 newTurnNumber++;
             } else {

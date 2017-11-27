@@ -26,7 +26,7 @@ export function nameCritters(critters, reinforcements) {
 }
 
 export function orderCritters(critters, reinforcements) {
-    let orderCritters = _.orderBy(critters, ['initiative'], ['desc']);
+    let orderCritters = _.orderBy(critters, ['initiative', 'initiativeMod'], ['desc', 'desc']);
     orderCritters = nameCritters(orderCritters, reinforcements);
 
     return orderCritters;

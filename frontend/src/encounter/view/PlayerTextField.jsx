@@ -13,11 +13,13 @@ class PlayerManager extends React.Component {
         super(props);
         this.state = {
             name: '',
-            initiative: ''
+            initiative: '',
+            initiativeMod: ''
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);
         this.handleInitChange = this.handleInitChange.bind(this);
+        this.handleInitModChange = this.handleInitModChange.bind(this);
         this.handleFieldsChanged = this.handleFieldsChanged.bind(this);
     }
 
@@ -33,12 +35,20 @@ class PlayerManager extends React.Component {
         }, this.handleFieldsChanged)
     }
 
+    handleInitModChange(event, value) {
+        this.setState({
+            initiativeMod: value
+        }, this.handleFieldsChanged)
+    }
+
     handleFieldsChanged() {
-        if (this.state.name && this.state.initiative) {
+        if (this.state.name && this.state.initiative && this.state.initiativeMod) {
             let player = {
                 name: this.state.name,
                 initiative: Number(this.state.initiative),
-                isPlayer: true
+                initiativeMod: Number(this.state.initiativeMod),
+                isPlayer: true,
+                isAlive: true
             };
 
             this.props.onChange(this.props.playerNumber, player);
@@ -50,6 +60,7 @@ class PlayerManager extends React.Component {
             <div style={this.props.style}>
                 <TextField value={this.state.name} floatingLabelText={'Player Name'} style={style.margin} onChange={this.handleNameChange}/>
                 <TextField value={this.state.initiative} floatingLabelText={'Initiative'} style={style.margin} onChange={this.handleInitChange}/>
+                <TextField value={this.state.initiativeMod} floatingLabelText={'Initiative Modifier'} style={style.margin} onChange={this.handleInitModChange}/>
             </div>
         )
     };
