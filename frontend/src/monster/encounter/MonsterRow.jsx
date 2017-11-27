@@ -2,8 +2,6 @@ import React from 'react';
 import ChangeHp from './ChangeHp.jsx';
 import HpDisplay from '../HpDisplay.jsx';
 
-
-
 class MonsterEncounter extends React.Component {
 
     constructor(props) {
@@ -36,8 +34,6 @@ class MonsterEncounter extends React.Component {
                     <HpDisplay hp={monster.hp} maxHp={monster.maxHp} /> | Initiative: {monster.initiative}</span>
                 <ChangeHp open={this.state.open} monsterName={this.props.monster.name} handleClose={this.toggleDialog} handleHpChange={this.handleHpChange} />
             </div>
-
-
         );
     }
 }

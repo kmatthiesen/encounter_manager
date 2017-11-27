@@ -6,7 +6,6 @@ const initState = {
 };
 
 export default function MonsterReducer(state = initState, action) {
-    console.log(action);
     switch(action.type) {
         case MonsterConstants.UPDATE_MONSTERS:
             return {

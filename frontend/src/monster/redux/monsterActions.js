@@ -19,8 +19,16 @@ export function getMonsters() {
             console.log('action');
             let data = _.orderBy(response.data, ['type']);
             dispatch(updateMonsters(data));
-        }).catch((err) => {
-            console.log(err);
-        });
+        })
     };
+}
+
+export function addMonster(monster) {
+
+    return (dispatch) => {
+        let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
+        axios.post(url, monster, {crossdomain: true}).then((response) => {
+            dispatch(getMonsters());
+        })
+    }
 }

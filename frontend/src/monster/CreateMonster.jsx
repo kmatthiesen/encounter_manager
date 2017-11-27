@@ -1,9 +1,11 @@
 import React from 'react';
 import { TextField, RaisedButton, Snackbar } from 'material-ui';
+import {connect} from 'react-redux';
 import axios from 'axios';
 
 import Endpoints from '../config/endpoints';
 import MonsterSearch from "./MonsterSearch.jsx";
+import * as MonsterActions from './redux/monsterActions';
 
 const style = {
     base: {
@@ -79,25 +81,16 @@ class CreateMonster extends React.Component {
             url: this.state.url
         };
 
-        let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
-        axios.post(url, monster, {crossdomain: true}).then((response) => {
-            this.setState({
-                monsters: response.data,
-                type: '',
-                hpDice: '',
-                initiativeMod: '',
-                url: '',
-                open: true,
-                message: 'Monster created successfully',
-                error: false
-            });
-        }).catch((err) => {
-            this.setState({
-                open: true,
-                message: 'ERROR: ' + err.response.data,
-                error: true
-            })
-        })
+        this.props.dispatch(MonsterActions.addMonster(monster));
+        this.setState({
+            type: '',
+            hpDice: '',
+            initiativeMod: '',
+            url: '',
+            open: true,
+            message: 'Monster created successfully',
+            error: false
+        });
     }
 
     render() {
@@ -127,5 +120,10 @@ class CreateMonster extends React.Component {
         )
     }
 }
+
+CreateMonster = connect((state)=>{
+    return {
+    };
+})(CreateMonster);
 
 export default CreateMonster;
