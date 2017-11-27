@@ -7,21 +7,10 @@ const style = {
     }
 };
 
-class MonsterEncounter extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <div style={style.div}>
-                {this.props.monster.name} | Intiative: {this.props.monster.initiative}
-            </div>
-
-
-        );
-    }
-}
-
-export default MonsterEncounter;
+export default function PlayerRow(props) {
+    return (
+        <div style={props.style}>
+            {props.player.name} | Initiative: {props.player.initiative}
+        </div>
+    )
+};

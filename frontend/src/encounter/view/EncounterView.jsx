@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import {RaisedButton, Snackbar} from 'material-ui';
-import MonsterEncounter from '../../monster/encounter/MonsterRow.jsx';
 import AddMonster from '../../monster/encounter/AddMonster.jsx';
 import PlayerManager from './PlayerManager.jsx';
 
 import {isAlive, isBloody} from "../../util/numbers";
 import {orderCritters, initMonsters} from '../../util/critters';
 import CurrentMonsters from "../../monster/encounter/CurrentMonsters";
+import CritterRow from "../CritterRow";
 
 
 const style = {
@@ -160,8 +160,8 @@ class EncounterView extends React.Component {
                             <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/>
                         </div>
                         : null}
-                    {this.state.critters.map((monster, index) => {
-                        return <MonsterEncounter key={index} activeTurn={this.state.turnNumber === index} index={index} monster={monster} changeHp={this.changeHp}/>
+                    {this.state.critters.map((critter, index) => {
+                        return <CritterRow key={index} activeTurn={this.state.turnNumber === index} index={index} critter={critter} changeHp={this.changeHp}/>
                     })}
                 </div>
                 <div>
