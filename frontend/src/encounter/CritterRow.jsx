@@ -23,10 +23,6 @@ const style = {
 
 class CritterRow extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         let critter = this.props.critter;

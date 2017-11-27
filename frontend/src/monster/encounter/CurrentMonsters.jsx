@@ -3,10 +3,6 @@ import _ from 'lodash';
 
 class CurrentMonsters extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         let monsterTypes = _.countBy(this.props.monsters, (monster) => {
