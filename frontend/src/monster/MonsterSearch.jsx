@@ -1,8 +1,8 @@
 import React from 'react';
 import _ from 'lodash';
-import axios from 'axios';
-import Endpoints from "../config/endpoints";
 import {Table, TableHeaderColumn, TableRowColumn, TableBody, TableHeader, TableRow, TextField} from "material-ui";
+import * as MonsterActions from './redux/monsterActions';
+import {connect} from "react-redux";
 
 class MonsterSearch extends React.Component {
 
@@ -10,7 +10,6 @@ class MonsterSearch extends React.Component {
         super(props);
 
         this.state = {
-            monsters: [],
             search: ''
         };
 
@@ -24,14 +23,7 @@ class MonsterSearch extends React.Component {
     }
 
     componentDidMount() {
-        let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
-        axios.get(url, {crossdomain: true}).then((response) => {
-            this.setState({
-                monsters: _.orderBy(response.data, ['type'])
-            })
-        }).catch((err) => {
-            console.log(err);
-        })
+        this.props.dispatch(MonsterActions.getMonsters());
     }
 
     render() {
@@ -51,7 +43,7 @@ class MonsterSearch extends React.Component {
                             </TableRow>
                         </TableHeader>
                         <TableBody displayRowCheckbox={false}>
-                            {this.state.monsters.map((monster, index) => {
+                            {this.props.monsters.map((monster, index) => {
                                 return ( (_.includes(monster.type.toLowerCase(), this.state.search.toLocaleLowerCase()))
                                         ? <TableRow key={index}>
                                             <TableRowColumn>{monster.type}</TableRowColumn>
@@ -69,5 +61,11 @@ class MonsterSearch extends React.Component {
         );
     }
 }
+
+MonsterSearch = connect((state)=>{
+    return {
+        monsters: state.monsters.data
+    };
+})(MonsterSearch);
 
 export default MonsterSearch;

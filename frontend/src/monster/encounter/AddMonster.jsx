@@ -1,8 +1,9 @@
 import React from 'react';
-import axios from 'axios';
 import _ from 'lodash';
-import { SelectField, MenuItem, RaisedButton, TextField } from 'material-ui';
-import Endpoints from '../../config/endpoints';
+import {MenuItem, RaisedButton, SelectField, TextField} from 'material-ui';
+import {connect} from 'react-redux';
+
+import * as MonsterActions from "../redux/monsterActions";
 
 const style = {
     flex: {
@@ -20,7 +21,6 @@ class AddMonster extends React.Component {
         super(props);
 
         this.state = {
-            monsters: [],
             value: '',
             quantity: '',
         };
@@ -32,14 +32,7 @@ class AddMonster extends React.Component {
     }
 
     componentDidMount() {
-        let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
-        axios.get(url, {crossdomain: true}).then((response) => {
-            this.setState({
-                monsters: _.orderBy(response.data, ['type'])
-            })
-        }).catch((err) => {
-            console.log(err);
-        })
+        this.props.dispatch(MonsterActions.getMonsters());
     }
 
     handleChange(event, value) {
@@ -49,7 +42,7 @@ class AddMonster extends React.Component {
     }
 
     handleClick() {
-        let monster = this.state.monsters[this.state.value];
+        let monster = this.props.monsters[this.state.value];
         let monsters = [];
         for (let i = 0; i < Number(this.state.quantity); i++) {
             let newMonster = _.cloneDeep(monster);
@@ -59,7 +52,7 @@ class AddMonster extends React.Component {
     }
 
     handleAddReinforcements() {
-        let monster = this.state.monsters[this.state.value];
+        let monster = this.props.monsters[this.state.value];
         let monsters = [];
         for (let i = 0; i < Number(this.state.quantity); i++) {
             let newMonster = _.cloneDeep(monster);
@@ -83,22 +76,30 @@ class AddMonster extends React.Component {
                         value={this.state.value}
                         onChange={this.handleChange}
                         style={style.margin}
-                        dropDownMenuProps={{anchorOrigin:{vertical:"bottom", horizontal:"left"}}}
+                        dropDownMenuProps={{anchorOrigin: {vertical: "bottom", horizontal: "left"}}}
                         autoFocus
                     >
-                        {this.state.monsters.map((monster, index) => {
+                        {this.props.monsters.map((monster, index) => {
                             return <MenuItem key={index} value={index} primaryText={monster.type}/>
                         })}
                     </SelectField>
-                    <TextField name="quantity" floatingLabelText={"Quantity"} style={style.margin} onChange={this.handleQtyChange} value={this.state.quantity}/>
+                    <TextField name="quantity" floatingLabelText={"Quantity"} style={style.margin}
+                               onChange={this.handleQtyChange} value={this.state.quantity}/>
                 </div>
                 <div style={style.flex}>
                     <RaisedButton label="Add Monster" primary style={style.margin} onClick={this.handleClick}/>
-                    <RaisedButton label="Add Reinforcements" secondary style={style.margin} onClick={this.handleAddReinforcements}/>
+                    <RaisedButton label="Add Reinforcements" secondary style={style.margin}
+                                  onClick={this.handleAddReinforcements}/>
                 </div>
             </div>
         )
     }
 }
+
+AddMonster = connect((state)=>{
+    return {
+        monsters: state.monsters.data
+    };
+})(AddMonster);
 
 export default AddMonster;

@@ -1,13 +1,13 @@
 import React from 'react';
 import _ from 'lodash';
 import {RaisedButton, Snackbar} from 'material-ui';
-import AddMonster from '../../monster/encounter/AddMonster.jsx';
-import PlayerManager from './PlayerManager.jsx';
+import AddMonster from '../monster/encounter/AddMonster.jsx';
+import PlayerManager from '../player/PlayerManager.jsx';
 
-import {isAlive, isBloody} from "../../util/numbers";
-import {orderCritters, initMonsters} from '../../util/critters';
-import CurrentMonsters from "../../monster/encounter/CurrentMonsters";
-import CritterRow from "../CritterRow";
+import {isAlive, isBloody} from "../util/numbers";
+import {orderCritters, initMonsters} from '../util/critters';
+import CurrentMonsters from "../monster/encounter/CurrentMonsters";
+import CritterRow from "../critter/CritterRow";
 
 
 const style = {

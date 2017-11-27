@@ -1,15 +1,14 @@
 import React from 'react';
-import './App.css';
 import {Card} from 'material-ui';
-import Main from './Main.jsx';
+import Main from './Content.jsx';
 import Header from './navbar/Header';
 
 const style = {
-    base: {
+    content: {
         maxWidth: '95%',
         margin: 'auto',
         marginTop: '5px'
-    },
+    }
 };
 
 class App extends React.Component {
@@ -17,7 +16,7 @@ class App extends React.Component {
         return (
             <div>
                 <Header/>
-                <Card style={style.base}>
+                <Card style={style.content}>
                     <Main/>
                 </Card>
             </div>
