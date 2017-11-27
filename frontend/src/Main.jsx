@@ -6,13 +6,11 @@ import CreateMonster from './monster/CreateMonster.jsx';
 const Main = () => (
     <div>
         <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route path='/encounter' component={EncounterView}/>
-            <Route path='/monster' component={CreateMonster}/>
+            <Route exact path='/' component={EncounterView}/>
+            <Route path='/monsters' component={CreateMonster}/>
+            <Route path='/players' component={CreateMonster}/>
         </Switch>
     </div>
 );
-
-const Home = () => <div>Home</div>;
 
 export default Main;

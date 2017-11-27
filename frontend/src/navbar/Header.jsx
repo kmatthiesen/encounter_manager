@@ -48,8 +48,9 @@ class Header extends React.Component {
                     <span style={style.span}><Link style={{...style.base, ...style.link}} to='/'>Encounter Manager</Link></span>
                 </ToolbarGroup>
                 <ToolbarGroup>
-                    <span style={style.span}><Link style={{...style.base, ...style.link}} to='/monster'>Monsters</Link></span>
-                    <span style={style.span}><Link style={{...style.base, ...style.link}} to='/encounter'>Encounters</Link></span>
+                    <span style={style.span}><Link style={{...style.base, ...style.link}} to='/'>Encounters</Link></span>
+                    <span style={style.span}><Link style={{...style.base, ...style.link}} to='/monsters'>Monsters</Link></span>
+                    {/*<span style={style.span}><Link style={{...style.base, ...style.link}} to='/players'>Players</Link></span>*/}
                 </ToolbarGroup>
             </Toolbar>
         );
