@@ -7,7 +7,7 @@ export function rollDice(die, amount) {
     let min = 1;
     let total = 0;
     for (let i = 0; i < amount; i++) {
-        total += Math.floor(Math.random() * (die - min + 1) + min);
+        total += _.random(min, die);
     }
     return total;
 }
@@ -38,6 +38,14 @@ export function calculateDiceStatement(compoundDice) {
     let compoundHp = splitHpDice(compoundDice);
     let hpDice = splitStatement(compoundHp[0]);
     return rollDice(hpDice[1], hpDice[0]) + compoundHp[1];
+}
+
+export function calculateHp(compoundDice) {
+    let compoundHp = splitHpDice(compoundDice);
+    let hpDice = splitStatement(compoundHp[0]);
+    let hp = rollDice(hpDice[1], hpDice[0]) + compoundHp[1];
+    let minHp = (hpDice[1] / 2 - 1) * hpDice[0];
+    return (hp < minHp ? minHp : hp);
 }
 
 export function isAlive(hp) {
