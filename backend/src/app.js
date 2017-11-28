@@ -5,6 +5,7 @@ let bodyParser = require('body-parser');
 
 let monster = require('./monster/monster-router');
 let encounter = require('./encounter/encounter-router');
+let player = require('./player/player-router');
 
 let app = express();
 
@@ -24,8 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/monster', monster);
-app.use('/encounter', encounter);
+app.use('/api/monster', monster);
+app.use('/api/encounter', encounter);
+app.use('/api/player', player);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

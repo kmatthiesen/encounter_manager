@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import {RaisedButton, Snackbar} from 'material-ui';
 import AddMonster from '../monster/encounter/AddMonster.jsx';
-import PlayerManager from '../player/PlayerManager.jsx';
+import EncounterPlayerManager from '../player/EncounterPlayerManager.jsx';
 
 import {isAlive, isBloody} from "../util/numbers";
 import {orderCritters, initMonsters} from '../util/critters';
@@ -145,7 +145,7 @@ class EncounterView extends React.Component {
         return (
             <div style={style.container}>
                 <div style={{...style.flex, ...style.borderBottom}}>
-                    <PlayerManager style={{...style.flexItem, ...style.borderRight}} addPlayers={this.addPlayers} />
+                    <EncounterPlayerManager style={{...style.flexItem, ...style.borderRight}} addPlayers={this.addPlayers} />
                     <AddMonster style={style.flexItem} addMonsters={this.addMonsters} addReinforcements={this.addReinforcements} />
                 </div>
                 <div>

@@ -9,6 +9,7 @@ npm install
 npm install -g create-react-app
 ```
 4. Place a mongo.json in the root of the backend project.
+5. Edit the endpoints.js file in frontend/src/config. Change the URL to http://<your-ip>.
 
 ## Running the Application
 1. Start both front and backend with 

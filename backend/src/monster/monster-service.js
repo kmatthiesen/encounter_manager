@@ -1,4 +1,5 @@
 const mongoClient = require('../lib/mongo-client.js');
+const Collections = require('../constants/collections');
 
 class MonsterService {
 
@@ -12,7 +13,7 @@ class MonsterService {
 
     getAll(responder) {
 
-        mongoClient.queryAsync('monsters', {}).then((data) => {
+        mongoClient.queryAsync(Collections.MONSTERS, {}).then((data) => {
             responder.send(200, data);
         }).catch((error) => {
             responder.send(500, error);
@@ -21,9 +22,9 @@ class MonsterService {
 
     add(responder, monster) {
 
-        mongoClient.queryAsync('monsters', {'type': monster.type}).then((data) => {
+        mongoClient.queryAsync(Collections.MONSTERS, {'type': monster.type}).then((data) => {
             if (data.length === 0) {
-                mongoClient.insertAsync('monsters', monster).then(() => {
+                mongoClient.insertAsync(Collections.MONSTERS, monster).then(() => {
                     responder.send(200);
                 }).catch((error) => {
                     responder.send(500, error);
