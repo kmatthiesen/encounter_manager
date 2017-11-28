@@ -31,8 +31,9 @@ class MonsterEncounter extends React.Component {
             <div style={this.props.style}>
                 <a href={monster.url} target="_blank">{monster.name}</a> |
                 <span onClick={this.toggleDialog}>
-                    <HpDisplay hp={monster.hp} maxHp={monster.maxHp} /> | Initiative: {monster.initiative}</span>
-                <ChangeHp open={this.state.open} monsterName={this.props.monster.name} handleClose={this.toggleDialog} handleHpChange={this.handleHpChange} />
+                    <HpDisplay hp={monster.hp} maxHp={monster.maxHp}/> | Initiative: {monster.initiative}</span>
+                <ChangeHp open={this.state.open} monsterName={this.props.monster.name} handleClose={this.toggleDialog}
+                          handleHpChange={this.handleHpChange}/>
             </div>
         );
     }

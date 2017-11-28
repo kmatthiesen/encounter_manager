@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {rollDice, calculateHp} from './numbers';
+import {rollDice, calculateDiceStatement} from './numbers';
 
 export function nameCritters(critters, reinforcements) {
     let newCritters = _.cloneDeep(critters);
@@ -38,7 +38,7 @@ export function initMonsters(monsters) {
 
         let newMonster = _.cloneDeep(monster);
         newMonster.initiative = rollDice(20, 1) + Number(monster.initiativeMod);
-        newMonster.hp = calculateHp(monster.hpDice);
+        newMonster.hp = calculateDiceStatement(monster.hpDice);
         newMonster.maxHp = newMonster.hp;
         newMonster.isAlive = true;
         newMonster.isBloody = false;

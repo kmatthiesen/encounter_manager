@@ -16,7 +16,6 @@ export function getMonsters() {
 
         let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.MONSTER;
         return axios.get(url, {crossdomain: true}).then((response) => {
-            console.log('action');
             let data = _.orderBy(response.data, ['type']);
             dispatch(updateMonsters(data));
         })

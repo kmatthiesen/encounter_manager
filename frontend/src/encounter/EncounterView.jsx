@@ -8,6 +8,7 @@ import {isAlive, isBloody} from "../util/numbers";
 import {orderCritters, initMonsters} from '../util/critters';
 import CurrentMonsters from "../monster/encounter/CurrentMonsters";
 import CritterRow from "../critter/CritterRow";
+import RollDice from "./RollDice.jsx";
 
 
 const style = {
@@ -37,7 +38,8 @@ class EncounterView extends React.Component {
             monsters: [],
             players: [],
             critters: [],
-            open: false,
+            openSnackBar: false,
+            openRollDice: false,
             message: '',
             turnNumber: 0
         };
@@ -50,6 +52,7 @@ class EncounterView extends React.Component {
         this.addReinforcements = this.addReinforcements.bind(this);
         this.handleRequestClose = this.handleRequestClose.bind(this);
         this.nextTurn = this.nextTurn.bind(this);
+        this.handleRollDiceDialog = this.handleRollDiceDialog.bind(this);
     }
 
     startEncounter() {
@@ -90,7 +93,7 @@ class EncounterView extends React.Component {
     addPlayers(players) {
         this.setState({
             players: players,
-            open: true,
+            openSnackBar: true,
             message: 'Players added/updated.'
         })
     }
@@ -101,7 +104,7 @@ class EncounterView extends React.Component {
 
         this.setState({
             monsters: newMonsters,
-            open: true,
+            openSnackBar: true,
             message: 'Monsters added.'
         })
     }
@@ -113,15 +116,21 @@ class EncounterView extends React.Component {
 
         this.setState({
             critters: newCritters,
-            open: true,
+            openSnackBar: true,
             message: 'Reinforcements added.'
         })
     }
 
     handleRequestClose() {
         this.setState({
-            open: false
+            openSnackBar: false
         });
+    }
+
+    handleRollDiceDialog() {
+        this.setState({
+            openRollDice: !this.state.openRollDice
+        })
     }
 
     nextTurn() {
@@ -158,6 +167,7 @@ class EncounterView extends React.Component {
                     { this.state.critters.length ?
                         <div style={style.borderBottom}>
                             <RaisedButton onClick={this.nextTurn} primary style={style.margin} label="Next Turn"/>
+                            <RaisedButton onClick={this.handleRollDiceDialog} secondary style={style.margin} label="Roll Dice"/>
                         </div>
                         : null}
                     {this.state.critters.map((critter, index) => {
@@ -168,8 +178,9 @@ class EncounterView extends React.Component {
                     <RaisedButton onClick={this.startEncounter} primary style={style.margin} label="Start Encounter"/>
                     <RaisedButton onClick={this.resetEncounter} secondary style={style.margin} label="End Encounter"/>
                 </div>
+                <RollDice open={this.state.openRollDice} handleClose={this.handleRollDiceDialog}/>
                 <Snackbar
-                    open={this.state.open}
+                    open={this.state.openSnackBar}
                     message={this.state.message}
                     autoHideDuration={3000}
                     onRequestClose={this.handleRequestClose}
