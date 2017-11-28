@@ -34,15 +34,24 @@ class EncounterView extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            monsters: [],
-            players: [],
-            critters: [],
-            openSnackBar: false,
-            openRollDice: false,
-            message: '',
-            turnNumber: 0
-        };
+
+        let encounter = sessionStorage.getItem('encounter');
+
+        if (encounter) {
+            this.state = JSON.parse(encounter);
+        } else {
+            this.state = {
+                monsters: [],
+                players: [],
+                critters: [],
+                openSnackBar: false,
+                openRollDice: false,
+                message: '',
+                turnNumber: 0
+            };
+        }
+
+
 
         this.startEncounter = this.startEncounter.bind(this);
         this.changeHp = this.changeHp.bind(this);
@@ -53,6 +62,10 @@ class EncounterView extends React.Component {
         this.handleRequestClose = this.handleRequestClose.bind(this);
         this.nextTurn = this.nextTurn.bind(this);
         this.handleRollDiceDialog = this.handleRollDiceDialog.bind(this);
+    }
+
+    componentDidUpdate(one, two) {
+        sessionStorage.setItem('encounter', JSON.stringify(this.state));
     }
 
     startEncounter() {
