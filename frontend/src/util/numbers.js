@@ -44,7 +44,7 @@ export function calculateHp(compoundDice) {
     let compoundHp = splitHpDice(compoundDice);
     let hpDice = splitStatement(compoundHp[0]);
     let hp = rollDice(hpDice[1], hpDice[0]) + compoundHp[1];
-    let minHp = (hpDice[1] / 2 - 1) * hpDice[0];
+    let minHp = 2 * hpDice[0];
     return (hp < minHp ? minHp : hp);
 }
 
