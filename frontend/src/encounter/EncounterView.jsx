@@ -51,8 +51,6 @@ class EncounterView extends React.Component {
             };
         }
 
-
-
         this.startEncounter = this.startEncounter.bind(this);
         this.changeHp = this.changeHp.bind(this);
         this.addPlayers = this.addPlayers.bind(this);

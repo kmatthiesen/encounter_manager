@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dialog, FlatButton, RaisedButton, TextField} from 'material-ui';
 import * as Numbers from '../util/numbers';
+import {connect} from 'react-redux';
 
 const style = {
     base: {
@@ -9,7 +10,7 @@ const style = {
     }
 };
 
-class ChangeHp extends React.Component {
+class RollDice extends React.Component {
 
     constructor(props) {
         super(props);
@@ -88,4 +89,4 @@ class ChangeHp extends React.Component {
     }
 }
 
-export default ChangeHp;
+export default RollDice;

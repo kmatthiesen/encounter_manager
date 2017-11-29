@@ -55,3 +55,17 @@ export function isAlive(hp) {
 export function isBloody(hp, maxHp) {
     return hp <= (maxHp / 2);
 }
+
+export function calculateAverageHp(compoundDice) {
+    let compoundHp = splitHpDice(compoundDice);
+    let hpDice = splitStatement(compoundHp[0]);
+    let dieAverage = calculateDieTotal(hpDice[1]) / hpDice[1];
+    return Math.floor(dieAverage * hpDice[0] + compoundHp[1]);
+}
+
+export function calculateDieTotal(die) {
+    if (die === 0) {
+        return 0;
+    }
+    return (die + calculateDieTotal(die - 1));
+}
