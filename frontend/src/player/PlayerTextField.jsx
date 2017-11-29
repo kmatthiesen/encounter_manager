@@ -3,7 +3,8 @@ import { TextField } from 'material-ui';
 
 const style = {
     margin: {
-        margin: '0px 5px'
+        margin: '0px 5px',
+        width: '25%'
     }
 };
 

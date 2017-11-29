@@ -7,12 +7,12 @@ export function rollDice(die, amount) {
     let min = 1;
     let total = 0;
     for (let i = 0; i < amount; i++) {
-        total += Math.floor(Math.random() * (die - min + 1) + min)
+        total += _.random(min, die);
     }
     return total;
 }
 
-export function splitDice(compoundDice) {
+export function splitStatement(compoundDice) {
     compoundDice = compoundDice.trim();
     let dice = compoundDice.split('d');
     _.forEach(dice, function(value, index) {
@@ -33,11 +33,19 @@ export function splitHpDice(compoundDice) {
     return dice;
 }
 
-export function calculateHp(compoundDice) {
+export function calculateDiceStatement(compoundDice) {
 
     let compoundHp = splitHpDice(compoundDice);
-    let hpDice = splitDice(compoundHp[0]);
-    return rollDice(hpDice[0], hpDice[1]) + compoundHp[1];
+    let hpDice = splitStatement(compoundHp[0]);
+    return rollDice(hpDice[1], hpDice[0]) + compoundHp[1];
+}
+
+export function calculateHp(compoundDice) {
+    let compoundHp = splitHpDice(compoundDice);
+    let hpDice = splitStatement(compoundHp[0]);
+    let hp = rollDice(hpDice[1], hpDice[0]) + compoundHp[1];
+    let minHp = 2 * hpDice[0];
+    return (hp < minHp ? minHp : hp);
 }
 
 export function isAlive(hp) {
@@ -46,4 +54,18 @@ export function isAlive(hp) {
 
 export function isBloody(hp, maxHp) {
     return hp <= (maxHp / 2);
+}
+
+export function calculateAverageHp(compoundDice) {
+    let compoundHp = splitHpDice(compoundDice);
+    let hpDice = splitStatement(compoundHp[0]);
+    let dieAverage = calculateDieTotal(hpDice[1]) / hpDice[1];
+    return Math.floor(dieAverage * hpDice[0] + compoundHp[1]);
+}
+
+export function calculateDieTotal(die) {
+    if (die === 0) {
+        return 0;
+    }
+    return (die + calculateDieTotal(die - 1));
 }

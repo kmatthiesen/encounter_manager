@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {MenuItem, RaisedButton, SelectField, TextField} from 'material-ui';
+import {MenuItem, RaisedButton, SelectField, TextField, Checkbox} from 'material-ui';
 import {connect} from 'react-redux';
 
 import * as MonsterActions from "../redux/monsterActions";
@@ -12,6 +12,10 @@ const style = {
     },
     margin: {
         margin: '5px'
+    },
+    center: {
+        margin: 'auto',
+        width: '20%'
     }
 };
 
@@ -23,12 +27,14 @@ class AddMonster extends React.Component {
         this.state = {
             value: '',
             quantity: '',
+            rollHp: true
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleQtyChange = this.handleQtyChange.bind(this);
         this.handleAddReinforcements = this.handleAddReinforcements.bind(this);
+        this.handleChecked = this.handleChecked.bind(this);
     }
 
     componentDidMount() {
@@ -46,6 +52,7 @@ class AddMonster extends React.Component {
         let monsters = [];
         for (let i = 0; i < Number(this.state.quantity); i++) {
             let newMonster = _.cloneDeep(monster);
+            newMonster.rollHp = this.state.rollHp;
             monsters.push(newMonster);
         }
         this.props.addMonsters(monsters);
@@ -56,6 +63,7 @@ class AddMonster extends React.Component {
         let monsters = [];
         for (let i = 0; i < Number(this.state.quantity); i++) {
             let newMonster = _.cloneDeep(monster);
+            newMonster.rollHp = this.state.rollHp;
             monsters.push(newMonster);
         }
         this.props.addReinforcements(monsters);
@@ -64,6 +72,12 @@ class AddMonster extends React.Component {
     handleQtyChange(event, value) {
         this.setState({
             quantity: value
+        })
+    }
+
+    handleChecked() {
+        this.setState({
+            rollHp: !this.state.rollHp
         })
     }
 
@@ -85,6 +99,10 @@ class AddMonster extends React.Component {
                     </SelectField>
                     <TextField name="quantity" floatingLabelText={"Quantity"} style={style.margin}
                                onChange={this.handleQtyChange} value={this.state.quantity}/>
+
+                </div>
+                <div style={style.center}>
+                    <Checkbox label={"Roll HP"} checked={this.state.rollHp} onCheck={this.handleChecked}/>
                 </div>
                 <div style={style.flex}>
                     <RaisedButton label="Add Monster" primary style={style.margin} onClick={this.handleClick}/>
