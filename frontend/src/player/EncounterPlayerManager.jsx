@@ -1,8 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import {RaisedButton, TextField} from 'material-ui';
+import {connect} from 'react-redux';
 
 import PlayerTextField from './PlayerTextField.jsx';
+import PlayerGroupDropdown from "./PlayerGroupDrowdown";
 
 const style = {
     flex: {
@@ -15,7 +17,7 @@ const style = {
     }
 };
 
-class PlayerManager extends React.Component {
+class EncounterPlayerManager extends React.Component {
 
     constructor(props) {
         super(props);
@@ -45,16 +47,6 @@ class PlayerManager extends React.Component {
         })
     }
 
-    generatePlayerElements(num) {
-        let elements = [];
-        for (let i = 0; i < num; i++) {
-            let element = <PlayerTextField key={i} playerNumber={i} onChange={this.handlePlayerFieldChange} />;
-            elements.push(element);
-        }
-
-        return elements;
-    }
-
     addPlayers() {
         this.props.addPlayers(this.state.players);
     }
@@ -66,10 +58,12 @@ class PlayerManager extends React.Component {
         return (
             <div style={this.props.style}>
                 <div style={style.flex}>
-                    <TextField value={this.state.numOfPlayers} floatingLabelText={'Number of Players'} onChange={this.handlePlayerChange}/>
+                    <PlayerGroupDropdown/>
                 </div>
                 <div style={style.center}>
-                    {playerElements}
+                    {this.props.activeGroup.players.map((player, index) => {
+                        return <PlayerTextField key={index} player={player} onChange={this.handlePlayerFieldChange} />
+                    })}
                 </div>
                 <div style={style.flex}>
                     {this.state.numOfPlayers ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
@@ -79,4 +73,10 @@ class PlayerManager extends React.Component {
     };
 }
 
-export default PlayerManager;
+EncounterPlayerManager = connect((state) => {
+    return {
+        activeGroup: state.players.activeGroup
+    }
+});
+
+export default EncounterPlayerManager;

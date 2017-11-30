@@ -25,7 +25,7 @@ class PlayerGroupDropdown extends React.Component {
         let groups = this.props.players.groups;
         let activeGroup = this.props.players.activeGroup;
         let value = _.findIndex(groups, {name: activeGroup.name});
-
+        value = (value !== -1) ? value : '';
         return (
             <div>
                 <SelectField
