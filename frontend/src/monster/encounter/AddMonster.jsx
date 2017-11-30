@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {MenuItem, RaisedButton, SelectField, TextField, Checkbox} from 'material-ui';
+import {Checkbox, MenuItem, RaisedButton, SelectField, TextField} from 'material-ui';
 import {connect} from 'react-redux';
 
 import * as MonsterActions from "../redux/monsterActions";

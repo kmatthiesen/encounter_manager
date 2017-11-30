@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import MonsterConstants from './monsterConstants';
 
 const initState = {

@@ -22,11 +22,27 @@ class MonsterService {
 
     getAll(responder) {
 
-        mongoClient.queryAsync(Collections.PLAYERS, {}).then((data) => {
-            responder.send(200, data);
-        }).catch((error) => {
-            responder.send(500, error);
-        });
+        let sampleData = [{
+            name: 'Test Group',
+            players: [
+                {
+                    name: 'Player 1',
+                    initiativeMod: 5,
+                },
+                {
+                    name: 'Player 2',
+                    initiativeMod: 3
+                }
+            ]
+        }];
+
+        responder.send(200, sampleData);
+
+        // mongoClient.queryAsync(Collections.PLAYERS, {}).then((data) => {
+        //     responder.send(200, data);
+        // }).catch((error) => {
+        //     responder.send(500, error);
+        // });
     }
 
     add(responder, player) {

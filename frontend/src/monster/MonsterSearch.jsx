@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import {Table, TableHeaderColumn, TableRowColumn, TableBody, TableHeader, TableRow, TextField} from "material-ui";
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn, TextField} from "material-ui";
 import * as MonsterActions from './redux/monsterActions';
 import {connect} from "react-redux";
 

@@ -3,10 +3,17 @@ import _ from 'lodash';
 import PlayerConstants from './playerConstants';
 import Endpoints from '../../config/endpoints';
 
-export function updatePlayers(data) {
+function setPlayerGroups(data) {
     return {
         type: PlayerConstants.GET_PLAYER_GROUPS,
-        data: data
+        data
+    }
+}
+
+export function setActiveGroup(data) {
+    return {
+        type: PlayerConstants.SET_ACTIVE_PLAYER_GROUP,
+        data
     }
 }
 
@@ -16,8 +23,8 @@ export function getPlayerGroups() {
 
         let url = Endpoints.URL + ':' + Endpoints.PORT + Endpoints.PLAYER;
         return axios.get(url, {crossdomain: true}).then((response) => {
-            let data = _.orderBy(response.data, ['type']);
-            dispatch(updatePlayers(data));
+            let data = _.orderBy(response.data, ['name']);
+            dispatch(setPlayerGroups(data));
         })
     };
 }

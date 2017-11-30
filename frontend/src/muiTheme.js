@@ -1,4 +1,4 @@
-import {grey900, grey50} from 'material-ui/styles/colors';
+import {grey50, grey900} from 'material-ui/styles/colors';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 const muiTheme = getMuiTheme({

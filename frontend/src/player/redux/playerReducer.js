@@ -3,8 +3,7 @@ import PlayerConstants from './playerConstants';
 
 const initState = {
     groups: [],
-    players: [],
-    activePlayers: []
+    activeGroup: {}
 };
 
 export default function PlayerReducer(state = initState, action) {
@@ -12,7 +11,12 @@ export default function PlayerReducer(state = initState, action) {
         case PlayerConstants.GET_PLAYER_GROUPS:
             return {
                 ...state,
-                data: [...action.data]
+                groups: action.data
+            };
+        case PlayerConstants.SET_ACTIVE_PLAYER_GROUP:
+            return {
+                ...state,
+                activeGroup: _.cloneDeep(action.data)
             };
         default:
             return state;

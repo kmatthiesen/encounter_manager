@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Toolbar, ToolbarGroup, ToolbarSeparator} from 'material-ui';
+import {Link} from 'react-router-dom';
+import {Toolbar, ToolbarGroup} from 'material-ui';
 import {grey50} from 'material-ui/styles/colors';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
@@ -53,7 +53,7 @@ class Header extends React.Component {
                 <ToolbarGroup>
                     <span style={style.span}><Link style={{...style.base, ...style.link}} to='/'>Encounters</Link></span>
                     <span style={style.span}><Link style={{...style.base, ...style.link}} to='/monsters'>Monsters</Link></span>
-                    {/*<span style={style.span}><Link style={{...style.base, ...style.link}} to='/players'>Players</Link></span>*/}
+                    <span style={style.span}><Link style={{...style.base, ...style.link}} to='/players'>Players</Link></span>
                     <span style={style.span}> | </span>
                     <span style={{...style.span, ...style.pointer}}>Roll Dice</span>
                 </ToolbarGroup>

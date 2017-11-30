@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, RaisedButton, FlatButton, TextField, RadioButtonGroup, RadioButton } from 'material-ui';
+import {Dialog, FlatButton, RadioButton, RadioButtonGroup, TextField} from 'material-ui';
 
 const style = {
     base: {

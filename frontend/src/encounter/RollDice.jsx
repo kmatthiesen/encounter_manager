@@ -1,7 +1,6 @@
 import React from 'react';
 import {Dialog, FlatButton, RaisedButton, TextField} from 'material-ui';
 import * as Numbers from '../util/numbers';
-import {connect} from 'react-redux';
 
 const style = {
     base: {

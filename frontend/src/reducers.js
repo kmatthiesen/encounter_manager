@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import monsterReducer from './monster/redux/monsterReducer';
 import playerReducer from './player/redux/playerReducer';
 

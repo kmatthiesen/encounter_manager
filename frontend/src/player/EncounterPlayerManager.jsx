@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { TextField, RaisedButton } from 'material-ui';
+import {RaisedButton, TextField} from 'material-ui';
 
 import PlayerTextField from './PlayerTextField.jsx';
 

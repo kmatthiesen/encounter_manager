@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {rollDice, calculateHp, calculateAverageHp} from './numbers';
+import {calculateAverageHp, calculateHp, rollDice} from './numbers';
 
 export function nameCritters(critters, reinforcements) {
     let newCritters = _.cloneDeep(critters);

@@ -1,9 +1,6 @@
 import React from 'react';
-import { TextField, RaisedButton, Snackbar } from 'material-ui';
+import {RaisedButton, Snackbar, TextField} from 'material-ui';
 import {connect} from 'react-redux';
-import axios from 'axios';
-
-import Endpoints from '../config/endpoints';
 import MonsterSearch from "./MonsterSearch.jsx";
 import * as MonsterActions from './redux/monsterActions';
 

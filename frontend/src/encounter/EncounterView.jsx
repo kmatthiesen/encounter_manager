@@ -5,7 +5,7 @@ import AddMonster from '../monster/encounter/AddMonster.jsx';
 import EncounterPlayerManager from '../player/EncounterPlayerManager.jsx';
 
 import {isAlive, isBloody} from "../util/numbers";
-import {orderCritters, initMonsters} from '../util/critters';
+import {initMonsters, orderCritters} from '../util/critters';
 import CurrentMonsters from "../monster/encounter/CurrentMonsters";
 import CritterRow from "../critter/CritterRow";
 import RollDice from "./RollDice.jsx";
