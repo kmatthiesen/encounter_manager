@@ -3,7 +3,10 @@ import PlayerConstants from './playerConstants';
 
 const initState = {
     groups: [],
-    activeGroup: {}
+    activeGroup: {
+        name: '',
+        players: []
+    }
 };
 
 export default function PlayerReducer(state = initState, action) {

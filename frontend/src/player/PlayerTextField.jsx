@@ -13,9 +13,9 @@ class PlayerManager extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
+            name: props.player.name,
             initiative: '',
-            initiativeMod: ''
+            initiativeMod: props.player.initiativeMod
         };
 
         this.handleNameChange = this.handleNameChange.bind(this);

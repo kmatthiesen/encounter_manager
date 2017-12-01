@@ -27,7 +27,6 @@ class EncounterPlayerManager extends React.Component {
         };
 
         this.handlePlayerChange = this.handlePlayerChange.bind(this);
-        this.generatePlayerElements = this.generatePlayerElements.bind(this);
         this.addPlayers = this.addPlayers.bind(this);
         this.handlePlayerFieldChange = this.handlePlayerFieldChange.bind(this);
     }
@@ -52,9 +51,6 @@ class EncounterPlayerManager extends React.Component {
     }
 
     render() {
-
-        const playerElements = this.generatePlayerElements(this.state.numOfPlayers);
-
         return (
             <div style={this.props.style}>
                 <div style={style.flex}>
@@ -62,11 +58,11 @@ class EncounterPlayerManager extends React.Component {
                 </div>
                 <div style={style.center}>
                     {this.props.activeGroup.players.map((player, index) => {
-                        return <PlayerTextField key={index} player={player} onChange={this.handlePlayerFieldChange} />
+                        return <PlayerTextField key={index} playerNumber={index} player={player} onChange={this.handlePlayerFieldChange} />
                     })}
                 </div>
                 <div style={style.flex}>
-                    {this.state.numOfPlayers ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
+                    {this.props.activeGroup.players.length ? <RaisedButton label="Add Players" primary onClick={this.addPlayers}/> : null}
                 </div>
             </div>
         )
@@ -77,6 +73,6 @@ EncounterPlayerManager = connect((state) => {
     return {
         activeGroup: state.players.activeGroup
     }
-});
+})(EncounterPlayerManager);
 
 export default EncounterPlayerManager;
