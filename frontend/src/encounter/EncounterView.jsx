@@ -67,6 +67,11 @@ class EncounterView extends React.Component {
     }
 
     startEncounter() {
+
+        if (this.state.critters.length && !window.confirm('Are you sure you want to restart the encounter?')) {
+            return;
+        }
+
         let newMonsters = initMonsters(this.state.monsters);
 
         let newCritters = _.concat(newMonsters, this.state.players);
