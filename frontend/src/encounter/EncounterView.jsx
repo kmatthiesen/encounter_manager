@@ -62,7 +62,7 @@ class EncounterView extends React.Component {
         this.handleRollDiceDialog = this.handleRollDiceDialog.bind(this);
     }
 
-    componentDidUpdate(one, two) {
+    componentDidUpdate() {
         sessionStorage.setItem('encounter', JSON.stringify(this.state));
     }
 
@@ -84,6 +84,11 @@ class EncounterView extends React.Component {
     }
 
     resetEncounter() {
+
+        if (this.state.critters.length && !window.confirm('Are you sure you want to end the encounter?')) {
+            return;
+        }
+
         this.setState({
             monsters: [],
             critters: []
