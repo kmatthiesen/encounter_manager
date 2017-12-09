@@ -81,6 +81,10 @@ class CreateMonster extends React.Component {
             url: this.state.url
         };
 
+        if (!(monster.type && monster.hpDice && monster.initiativeMod && monster.url) && !window.confirm('One of more fields are empty. Do you want to create the monster anyways?')) {
+            return;
+        }
+
         this.props.dispatch(MonsterActions.addMonster(monster));
         this.setState({
             type: '',

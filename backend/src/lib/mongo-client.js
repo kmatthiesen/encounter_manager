@@ -1,5 +1,4 @@
 'use strict';
-
 const MongoClient = require('mongodb').MongoClient;
 const mongoCreds = require('../../mongo.json');
 const mongoUrl = 'mongodb://' + mongoCreds.username + ':' + mongoCreds.password +
@@ -20,7 +19,9 @@ class Mongo {
     queryAsync (collection, filter) {
         return MongoClient.connect(mongoUrl).then((db) => {
             let coll = db.collection(collection);
-            return coll.find(filter).sort({ lastname: 1 }).toArray();
+            let data = coll.find(filter).toArray();
+            // db.close();
+            return data;
         }).catch((err) => {
             throw new Error(err);
         });
@@ -37,7 +38,9 @@ class Mongo {
             let id = new ObjectId();
             record._id = id.toHexString();
             let coll = db.collection(collection);
-            return coll.insertOne(record);
+            let data = coll.insertOne(record);
+            db.close();
+            return data;
         }).catch((err) => {
             throw new Error(err);
         });
@@ -54,7 +57,9 @@ class Mongo {
             let filter = {
                 _id: doc._id
             };
-            return coll.replaceOne(filter, doc);
+            let data = coll.replaceOne(filter, doc);
+            db.close();
+            return data;
         }).catch((err) => {
             throw new Error(err);
         });
