@@ -34,7 +34,7 @@ class RollDice extends React.Component {
 
     rollDice() {
         if (this.state.dice) {
-            let total = Numbers.calculateDiceStatement(this.state.dice);
+            let total = Numbers.calculateDiceRoll(this.state.dice);
             this.setState({
                 total: total
             });
